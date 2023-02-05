@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Delete Element in Array</title>
+    <script>
+
+      //Static Code : 
+      //    let data  =[10,20,100,30,40,50];
+      //    let position =2;
+      //    for(let i=position; i<data.length-1;i++){
+
+      //     data[i]=data[i+1];
+      //    }
+      //    data.length= data.length-1;
+      //    console.log(data)
+
+
+      //Dynamic code using function : 
+      function removeEl() 
+      {
+        let data = [10,20,100,30,40,50];
+        let position = document.getElementById("position").value;
+        position = parseInt(position);
+        for (let i = position; i < data.length - 1; i++) {
+          data[i] = data[i + 1];
+        }
+        data.length = data.length - 1;
+        console.warn(data);
+      }
+    </script>
+  </head>
+  <body>
+    <input type="text" id="position" placeholder="enter position" />
+    <button onclick="removeEl()">Remove Element</button>
+  </body>
+</html>

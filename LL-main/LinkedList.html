@@ -1,0 +1,221 @@
+<html>
+  <head>
+    <title>Linked List in JavaScript</title>
+    <script>
+      class List 
+      {
+        //default method
+        //data = 10
+        constructor(data) 
+        {
+          this.head = {
+            value: 10,
+            next: null
+          };
+          this.tail = this.head;
+          this.size = 1;
+        }
+        //nodeData = 20
+        //adding at the end
+        appendNode(nodeData) 
+        {
+          let newNode = {
+            value: nodeData,
+            next: null,
+          };
+          this.size += 1;
+          this.tail.next = newNode;
+          //new node is your new tail
+          this.tail = newNode;
+
+          //this.size = this.size + 1;
+          
+        }
+
+        //Inserting at the beginning of the LL
+        prependNode(data){  
+          let newNode = {
+            value : data,
+            next : null
+          }
+          newNode.next = this.head;
+          this.head = newNode;
+          this.size += 1;
+
+        }
+
+        //method created to go to the desired node
+        traversingNode() {
+          let counter = 0;
+          let currentNode = this.head;
+          while (counter < this.size) {
+            console.log(currentNode.value);
+            currentNode = currentNode.next;
+            counter++;
+          }
+        }
+
+        //lead is also known as Current Node
+        //Counter is used to keep a count on which node we are
+        deleteNode(index) 
+        {
+          let counter = 0;
+          let lead = this.head;
+          if (index === 0) 
+          {
+            this.head = this.head.next;
+          } 
+          else 
+          {
+            while (counter < index) 
+            {
+              lead = lead.next;
+              counter++;
+            }
+           
+            lead.next = lead.next.next;
+          }
+        }
+
+        //This method has been created to go to the node we want, using the requested index number passed as an argument while calling this method
+        travsersing(req)
+        {
+          let counter = 0;
+          let currentNode = this.head;
+          while(counter!=req){
+            counter++;
+            currentNode=currentNode.next;
+          }
+          return currentNode;
+        }
+
+        insertAt(index,data)
+        {
+          let newNode ={
+            value : data,
+            next : null
+          }
+
+          //gets 10 from first node
+          //nextNode will be 30
+          //grabbed 10 & 30
+          let leadNode = this.travsersing(index-1);
+          let nextNode = leadNode.next;
+          
+          leadNode.next = newNode;
+          newNode.next = nextNode;
+          this.size += 1;
+
+        }
+
+        //Deleting at a particular index number
+        delete(index)
+        {
+          let leadNode = this.travsersing(index-1);
+          //let unwantedNode = leadNode.next;
+          //let nextNode = unwantedNode.next;
+
+          // 1=>2=>3
+          let nextNode = leadNode.next.next;
+
+          leadNode.next=nextNode;
+          this.size--;
+          
+        }
+
+        //10 => 20 => 30 => 40
+        reverse(){
+          let first = this.head;
+          this.tail=this.head;
+          let second = first.next;
+
+          //while 2nd list exists
+          while(second)
+          {
+            let temp = second.next;
+            second.next=first;
+            first = second;
+            second = temp;
+          }
+          this.head.next=null;
+          this.head = first;
+
+        }
+
+        searchNodeThroughIndex(index){
+
+let result=undefined;
+let lead=this.head;
+let counter=1;
+while(counter<index){
+    lead=lead.next;
+    counter++;
+}
+console.log("HI"+lead.value);
+
+}
+
+
+        SearchNodebyValue(val){
+        let curr = this.head;
+        let counter = 1;
+        while(counter <= this.size && curr.value != val){
+                 curr = curr.next;
+                 counter++;
+         }
+        if(counter > this.size) return console.log(`Node with value ${val} is not present`)
+        console.log("Result Node is :" , curr);
+    }
+
+      }
+
+      //creating object called list
+      let list = new List(10);
+      list.appendNode(20);
+
+      console.log(list);
+
+      //let list = new List();
+      //console.log(list);
+
+      // list.appendNode(30);
+      // list.appendNode(40);
+      // list.appendNode(50);
+      // list.appendNode(60);
+      // list.appendNode(70);
+
+      // list.prependNode(0)
+      // list.reverse()
+
+      // console.log(list);
+      // list.SearchNodebyValue(40);
+      // list.searchNodeThroughIndex(5);
+
+      //list.traversing();
+
+      //deleted 2nd element
+      //list.deleteNode(2);
+      //list.insertAt(1,20)
+      //list.insertAt(7,80)
+      //list.delete(2);
+
+      //list.traversingNode();
+      // list.appendNode(300);
+      // list.appendNode(400);
+      // list.deleteNode(1);
+      // list.appendNode(500);
+      // list.appendNode(600);
+      // list.appendNode(700);
+      // list.traversing();
+      // list.deleteNode(3);
+     
+
+      //list.searchNode(900)
+
+      // console.warn(list);
+    </script>
+  </head>
+  <body>
+    <h1>Linked List in JavaScript</h1>
+  </body>
+</html>
